@@ -1,0 +1,66 @@
+#include "DatabaseManager.h"
+
+DatabaseManager::DatabaseManager() : db(nullptr) {}
+
+DatabaseManager::~DatabaseManager() {
+    if (db) sqlite3_close(db);
+}
+
+bool DatabaseManager::begin() {
+    if (!LittleFS.begin(true)) {
+        Serial.println("Error montando LittleFS");
+        return false;
+    }
+
+    sqlite3_initialize();
+    if (sqlite3_open(DB_PATH, &db) != SQLITE_OK) {
+        Serial.println("Error abriendo base de datos SQLite");
+        return false;
+    }
+
+    const char *sqlUsers = "CREATE TABLE IF NOT EXISTS users ("
+                           "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                           "uid TEXT UNIQUE NOT NULL, "
+                           "name TEXT NOT NULL, "
+                           "role TEXT DEFAULT 'USER', "
+                           "active INTEGER DEFAULT 1);";
+
+    const char *sqlLogs = "CREATE TABLE IF NOT EXISTS access_logs ("
+                          "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                          "uid TEXT NOT NULL, "
+                          "granted INTEGER NOT NULL, "
+                          "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);";
+
+    char *errMsg = nullptr;
+    sqlite3_exec(db, sqlUsers, nullptr, nullptr, &errMsg);
+    sqlite3_exec(db, sqlLogs, nullptr, nullptr, &errMsg);
+
+    return true;
+}
+
+bool DatabaseManager::isUserAuthorized(const String& uid) {
+    String sql = "SELECT active FROM users WHERE uid = '" + uid + "' AND active = 1;";
+    sqlite3_stmt *stmt;
+    bool authorized = false;
+
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            authorized = true;
+        }
+    }
+    sqlite3_finalize(stmt);
+    return authorized;
+}
+
+bool DatabaseManager::logAccess(const String& uid, bool granted) {
+    String sql = "INSERT INTO access_logs (uid, granted) VALUES ('" + uid + "', " + String(granted ? 1 : 0) + ");";
+    char *errMsg = nullptr;
+    return sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK;
+}
+
+bool DatabaseManager::addUser(const String& uid, const String& name, const String& role) {
+    String sql = "INSERT OR REPLACE INTO users (uid, name, role, active) VALUES ('" + 
+                 uid + "', '" + name + "', '" + role + "', 1);";
+    char *errMsg = nullptr;
+    return sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errMsg) == SQLITE_OK;
+}
