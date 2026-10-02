@@ -59,7 +59,7 @@ Ejemplo:
 ```cpp
 #define WIFI_SSID "TU_SSID"
 #define WIFI_PASSWORD "TU_PASSWORD"
-#define API_CHECK_URL "http://192.168.1.98/api/check.php"
+#define API_CHECK_URL "http://[TU_IP]/api/check.php"
 #define API_TIMEOUT_MS 3000
 
 #define RST_PIN 9
@@ -133,7 +133,7 @@ También puede incluir campos adicionales:
   "granted": true,
   "is_admin": true,
   "message": "Acceso concedido",
-  "redirect_url": "http://192.168.1.98/admin"
+  "redirect_url": "http://[TU_IP]/admin"
 }
 ```
 
@@ -153,13 +153,13 @@ El proyecto usa PlatformIO con las siguientes librerías:
 Desde la raíz del proyecto:
 
 ```bash
-/home/edu-gar/.platformio/penv/bin/platformio run
+/home/user/.platformio/penv/bin/platformio run
 ```
 
 ## Carga al dispositivo
 
 ```bash
-/home/edu-gar/.platformio/penv/bin/platformio run --target upload
+/home/user/.platformio/penv/bin/platformio run --target upload
 ```
 
 ## Estado actual
@@ -169,6 +169,7 @@ La versión actual del proyecto está enfocada en:
 - backend externo para validación
 - control visual/auditivo de accesos
 - uso de un único archivo principal `src/main.cpp`
+- *La carpeta de API debe ir en htdocs si vas a usar XAMPP.*
 
 ## Siguientes mejoras sugeridas
 
