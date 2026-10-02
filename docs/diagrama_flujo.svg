@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Segoe UI', Arial, sans-serif;">
+  <defs>
+    <!-- Arrow Marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#000000"/>
+    </marker>
+    <marker id="arrowDashed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#555555"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#000000" font-size="18" font-weight="bold">FLUJO DEL SISTEMA ESP32 NFC CONTROL</text>
+  <line x1="50" y1="50" x2="850" y2="50" stroke="#cccccc" stroke-width="1"/>
+
+  <!-- COLUMN 1: HARDWARE (ESP32) -->
+  <rect x="50" y="70" width="230" height="390" rx="6" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <rect x="50" y="70" width="230" height="30" rx="6" fill="#f0f0f0" stroke="#000000" stroke-width="1.5"/>
+  <text x="165" y="90" text-anchor="middle" fill="#000000" font-size="13" font-weight="bold">1. HARDWARE (ESP32)</text>
+
+  <!-- Lector RFID -->
+  <rect x="70" y="115" width="190" height="55" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="165" y="138" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">Lector RFID RC522</text>
+  <text x="165" y="156" text-anchor="middle" fill="#555555" font-size="10">Lectura de Tarjetas NFC</text>
+
+  <!-- ESP32 -->
+  <rect x="70" y="195" width="190" height="75" rx="4" fill="#f8f8f8" stroke="#000000" stroke-width="1.5"/>
+  <text x="165" y="222" text-anchor="middle" fill="#000000" font-size="13" font-weight="bold">ESP32 (Microcontrolador)</text>
+  <text x="165" y="242" text-anchor="middle" fill="#555555" font-size="10">FreeRTOS + Módulo Wi-Fi</text>
+
+  <!-- Sensor Ultrasónico -->
+  <rect x="70" y="295" width="190" height="50" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="165" y="316" text-anchor="middle" fill="#000000" font-size="11" font-weight="bold">Sensor Ultrasónico HC-SR04</text>
+  <text x="165" y="332" text-anchor="middle" fill="#555555" font-size="10">Detección Presencia (&lt; 5cm)</text>
+
+  <!-- Actuadores -->
+  <rect x="70" y="365" width="190" height="75" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="165" y="386" text-anchor="middle" fill="#000000" font-size="11" font-weight="bold">Actuadores Puerta</text>
+  <text x="165" y="405" text-anchor="middle" fill="#333333" font-size="10">Servomotor SG90 (Puerta)</text>
+  <text x="165" y="422" text-anchor="middle" fill="#333333" font-size="10">Buzzer &amp; LEDs Indicadores</text>
+
+  <!-- Hardware Vertical Arrows -->
+  <path d="M 165 170 L 165 195" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <path d="M 165 295 L 165 270" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <path d="M 165 270 L 165 365" stroke="#000000" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+
+  <!-- COLUMN 2: BACKEND LAMP -->
+  <rect x="335" y="70" width="230" height="390" rx="6" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <rect x="335" y="70" width="230" height="30" rx="6" fill="#f0f0f0" stroke="#000000" stroke-width="1.5"/>
+  <text x="450" y="90" text-anchor="middle" fill="#000000" font-size="13" font-weight="bold">2. SERVIDOR LAMP (PHP/SQLite)</text>
+
+  <!-- check.php -->
+  <rect x="355" y="115" width="190" height="65" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="450" y="138" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">api/check.php</text>
+  <text x="450" y="156" text-anchor="middle" fill="#555555" font-size="10">Validación HTTP POST JSON</text>
+
+  <!-- get_ultimo_uid.php -->
+  <rect x="355" y="200" width="190" height="65" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="450" y="223" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">api/get_ultimo_uid.php</text>
+  <text x="450" y="241" text-anchor="middle" fill="#555555" font-size="10">Filtro Tiempo Real (10 Segundos)</text>
+
+  <!-- Base de datos SQLite -->
+  <rect x="355" y="285" width="190" height="80" rx="4" fill="#f8f8f8" stroke="#000000" stroke-width="1.5"/>
+  <text x="450" y="310" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">access_control.db (SQLite)</text>
+  <text x="450" y="330" text-anchor="middle" fill="#333333" font-size="10">Tabla 'users' &amp; 'access_log'</text>
+
+  <!-- verificar_ultimo_admin.php -->
+  <rect x="355" y="380" width="190" height="60" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="450" y="403" text-anchor="middle" fill="#000000" font-size="11" font-weight="bold">verificar_ultimo_admin.php</text>
+  <text x="450" y="421" text-anchor="middle" fill="#555555" font-size="10">Redirección de Administrador</text>
+
+  <!-- Backend Internal Lines -->
+  <path d="M 450 180 L 450 285" stroke="#555555" stroke-width="1" stroke-dasharray="3" marker-end="url(#arrowDashed)"/>
+  <path d="M 450 285 L 450 265" stroke="#555555" stroke-width="1" stroke-dasharray="3" marker-end="url(#arrowDashed)"/>
+
+
+  <!-- COLUMN 3: ADMIN WEB -->
+  <rect x="620" y="70" width="230" height="390" rx="6" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <rect x="620" y="70" width="230" height="30" rx="6" fill="#f0f0f0" stroke="#000000" stroke-width="1.5"/>
+  <text x="735" y="90" text-anchor="middle" fill="#000000" font-size="13" font-weight="bold">3. PANEL ADMIN WEB</text>
+
+  <!-- admin.php -->
+  <rect x="640" y="115" width="190" height="180" rx="4" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="735" y="140" text-anchor="middle" fill="#000000" font-size="13" font-weight="bold">api/admin.php</text>
+  <line x1="655" y1="150" x2="815" y2="150" stroke="#dddddd" stroke-width="1"/>
+  <text x="655" y="172" fill="#000000" font-size="11" font-weight="bold">• Captura NFC en Vivo</text>
+  <text x="668" y="188" fill="#555555" font-size="10">Polling AJAX (1 segundo)</text>
+  <text x="655" y="212" fill="#000000" font-size="11" font-weight="bold">• Registro de Usuarios</text>
+  <text x="668" y="228" fill="#555555" font-size="10">Formulario Nombre / Rol</text>
+  <text x="655" y="252" fill="#000000" font-size="11" font-weight="bold">• Tabla de Usuarios</text>
+  <text x="668" y="268" fill="#555555" font-size="10">Lista + Botón Eliminar</text>
+
+  <!-- index.php -->
+  <rect x="640" y="315" width="190" height="125" rx="4" fill="#ffffff" stroke="#333333" stroke-width="1"/>
+  <text x="735" y="340" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">api/index.php</text>
+  <text x="735" y="360" text-anchor="middle" fill="#555555" font-size="10">Monitor de Accesos en Vivo</text>
+  <text x="735" y="380" text-anchor="middle" fill="#555555" font-size="10">Auto-refresco de pantalla</text>
+
+
+  <!-- CONNECTIONS BETWEEN COLUMNS -->
+
+  <!-- ESP32 to check.php -->
+  <path d="M 260 230 L 355 147" stroke="#000000" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="307" y="180" text-anchor="middle" fill="#000000" font-size="10" font-weight="bold">HTTP POST</text>
+
+  <!-- admin.php to get_ultimo_uid.php -->
+  <path d="M 640 232 L 545 232" stroke="#000000" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="592" y="222" text-anchor="middle" fill="#000000" font-size="10" font-weight="bold">Polling (1s)</text>
+
+  <!-- admin.php Form to DB -->
+  <path d="M 640 255 L 545 325" stroke="#555555" stroke-width="1.2" stroke-dasharray="3" marker-end="url(#arrowDashed)"/>
+  <text x="592" y="300" text-anchor="middle" fill="#555555" font-size="9">INSERT / DELETE</text>
+
+</svg>

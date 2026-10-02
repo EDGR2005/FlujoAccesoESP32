@@ -1,5 +1,7 @@
 # Conexión de hardware ESP32
 
+![Diagrama de Conexiones del Circuito](diagrama_conexiones.svg)
+
 ## Diagrama de pines
 
 ```

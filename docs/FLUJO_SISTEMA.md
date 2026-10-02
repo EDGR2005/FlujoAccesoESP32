@@ -4,6 +4,12 @@ Este documento describe el flujo de funcionamiento completo del sistema **ESP32 
 
 ---
 
+## 🎨 Esquema Visual del Sistema
+
+![Esquema General del Sistema ESP32 NFC](diagrama_flujo.svg)
+
+---
+
 ## 1. Arquitectura General del Sistema
 
 El siguiente diagrama de bloques ilustra la interacción entre los componentes de hardware, el backend PHP en LAMP y el navegador web del administrador:

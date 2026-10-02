@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Segoe UI', Arial, sans-serif;">
+  
+  <!-- Título Principal -->
+  <text x="500" y="35" text-anchor="middle" fill="#000000" font-size="18" font-weight="bold">DIAGRAMA DE CONEXIONES DEL CIRCUITO (ESP32)</text>
+  <line x1="40" y1="48" x2="960" y2="48" stroke="#cccccc" stroke-width="1"/>
+
+  <!-- ==================== BLOQUE CENTRAL: ESP32 DEV MODULE ==================== -->
+  <rect x="360" y="70" width="280" height="540" rx="8" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+  <rect x="360" y="70" width="280" height="35" rx="8" fill="#e2e8f0" stroke="#0f172a" stroke-width="1.5"/>
+  <text x="500" y="93" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="bold">ESP32 Dev Module (Pinout)</text>
+
+  <!-- Pines Izquierda del ESP32 -->
+  <g font-size="11" font-weight="bold" fill="#0f172a">
+    <text x="370" y="130">3.3V (VCC RFID) ───</text>
+    <text x="370" y="170">GPIO 5 (SDA / SS) ──</text>
+    <text x="370" y="210">GPIO 18 (SCK) ──────</text>
+    <text x="370" y="250">GPIO 19 (MISO) ─────</text>
+    <text x="370" y="290">GPIO 23 (MOSI) ─────</text>
+    <text x="370" y="330">GPIO 21 (RST RFID) ─</text>
+    <text x="370" y="450">5V (VIN / VCC) ──────</text>
+    <text x="370" y="520">GND (Tierra Común) ──</text>
+  </g>
+
+  <!-- Pines Derecha del ESP32 -->
+  <g font-size="11" font-weight="bold" fill="#0f172a" text-anchor="end">
+    <text x="630" y="150">─── GPIO 4 (SERVO SIG)</text>
+    <text x="630" y="390">─── GPIO 14 (TRIG)</text>
+    <text x="630" y="420">─── GPIO 15 (ECHO)</text>
+    <text x="630" y="250">─── GPIO 25 (LED Verde)</text>
+    <text x="630" y="290">─── GPIO 26 (LED Rojo)</text>
+    <text x="630" y="330">─── GPIO 27 (BUZZER)</text>
+  </g>
+
+
+  <!-- ==================== COMPONENTE 1: LECTOR RFID RC522 (IZQUIERDA ARRIBA) ==================== -->
+  <rect x="40" y="70" width="240" height="300" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <rect x="40" y="70" width="240" height="28" rx="6" fill="#f1f5f9" stroke="#000000" stroke-width="1"/>
+  <text x="160" y="89" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">LECTOR RFID RC522 (SPI)</text>
+  
+  <g font-size="11" fill="#333333" text-anchor="end">
+    <text x="260" y="130">VCC (3.3V)</text>
+    <text x="260" y="170">SDA / SS</text>
+    <text x="260" y="210">SCK (Clock)</text>
+    <text x="260" y="250">MISO (Master In)</text>
+    <text x="260" y="290">MOSI (Master Out)</text>
+    <text x="260" y="330">RST (Reset)</text>
+    <text x="260" y="355">GND (Tierra)</text>
+  </g>
+
+  <!-- LÍNEAS DE CONEXIÓN RFID -> ESP32 -->
+  <g stroke="#000000" stroke-width="1.2">
+    <line x1="265" y1="126" x2="370" y2="126"/>
+    <line x1="265" y1="166" x2="370" y2="166"/>
+    <line x1="265" y1="206" x2="370" y2="206"/>
+    <line x1="265" y1="246" x2="370" y2="246"/>
+    <line x1="265" y1="286" x2="370" y2="286"/>
+    <line x1="265" y1="326" x2="370" y2="326"/>
+    <!-- Linea GND -->
+    <path d="M 265 352 L 310 352 L 310 516 L 370 516" fill="none"/>
+  </g>
+
+
+  <!-- ==================== COMPONENTE 2: SENSOR ULTRASÓNICO HC-SR04 (IZQUIERDA ABAJO) ==================== -->
+  <rect x="40" y="400" width="240" height="210" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <rect x="40" y="400" width="240" height="28" rx="6" fill="#f1f5f9" stroke="#000000" stroke-width="1"/>
+  <text x="160" y="419" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">SENSOR ULTRASÓNICO HC-SR04</text>
+
+  <g font-size="11" fill="#333333" text-anchor="end">
+    <text x="260" y="450">VCC (+5V)</text>
+    <text x="260" y="490">TRIG (Trigger)</text>
+    <text x="260" y="530">ECHO (Echo)</text>
+    <text x="260" y="570">GND (Tierra)</text>
+  </g>
+
+  <!-- LÍNEAS DE CONEXIÓN ULTRASÓNICO -> ESP32 -->
+  <g stroke="#000000" stroke-width="1.2" fill="none">
+    <path d="M 265 446 L 325 446 L 325 446 L 370 446"/>
+    <path d="M 265 486 L 300 486 L 300 630 L 660 630 L 660 386 L 630 386"/>
+    <path d="M 265 526 L 290 526 L 290 640 L 670 640 L 670 416 L 630 416"/>
+    <path d="M 265 566 L 320 566 L 320 520 L 370 520"/>
+  </g>
+
+
+  <!-- ==================== COMPONENTE 3: SERVOMOTOR SG90 (DERECHA ARRIBA) ==================== -->
+  <rect x="720" y="70" width="240" height="140" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <rect x="720" y="70" width="240" height="28" rx="6" fill="#f1f5f9" stroke="#000000" stroke-width="1"/>
+  <text x="840" y="89" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">SERVOMOTOR SG90 (PUERTA)</text>
+
+  <g font-size="11" fill="#333333">
+    <text x="735" y="120">SIG (Naranja/Amarillo)</text>
+    <text x="735" y="150">VCC 5V (Fuente Ext.)</text>
+    <text x="735" y="180">GND (Marrón/Negro)</text>
+  </g>
+
+  <!-- LÍNEAS DE CONEXIÓN SERVO -> ESP32 / FUENTE EXT -->
+  <g stroke="#000000" stroke-width="1.2" fill="none">
+    <path d="M 730 116 L 670 116 L 670 146 L 630 146"/>
+    <path d="M 730 176 L 690 176 L 690 524 L 370 524"/>
+  </g>
+
+
+  <!-- ==================== COMPONENTE 4: INDICADORES Y ALARMA (DERECHA ABAJO) ==================== -->
+  <rect x="720" y="230" width="240" height="380" rx="6" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <rect x="720" y="230" width="240" height="28" rx="6" fill="#f1f5f9" stroke="#000000" stroke-width="1"/>
+  <text x="840" y="249" text-anchor="middle" fill="#000000" font-size="12" font-weight="bold">INDICADORES Y ALARMA</text>
+
+  <!-- LED Verde -->
+  <circle cx="745" cy="290" r="10" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="765" y="294" fill="#000000" font-size="11" font-weight="bold">LED Verde (Acceso)</text>
+  <text x="765" y="310" fill="#555555" font-size="9">Anodo (+) ─ RES 220Ω ─ GPIO 25</text>
+  <text x="765" y="322" fill="#555555" font-size="9">Cátodo (-) ───────────── GND</text>
+
+  <!-- LED Rojo -->
+  <circle cx="745" cy="360" r="10" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="765" y="364" fill="#000000" font-size="11" font-weight="bold">LED Rojo (Denegado)</text>
+  <text x="765" y="380" fill="#555555" font-size="9">Anodo (+) ─ RES 220Ω ─ GPIO 26</text>
+  <text x="765" y="392" fill="#555555" font-size="9">Cátodo (-) ───────────── GND</text>
+
+  <!-- Buzzer -->
+  <rect x="735" y="430" width="20" height="20" rx="10" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="765" y="444" fill="#000000" font-size="11" font-weight="bold">Buzzer Piezoeléctrico</text>
+  <text x="765" y="460" fill="#555555" font-size="9">Positivo (+) ─────────── GPIO 27</text>
+  <text x="765" y="472" fill="#555555" font-size="9">Negativo (-) ─────────── GND</text>
+
+  <!-- LÍNEAS DE CONEXIÓN LEDS Y BUZZER -> ESP32 -->
+  <g stroke="#000000" stroke-width="1.2" fill="none">
+    <path d="M 735 306 L 680 306 L 680 246 L 630 246"/>
+    <path d="M 735 376 L 690 376 L 690 286 L 630 286"/>
+    <path d="M 735 456 L 700 456 L 700 326 L 630 326"/>
+  </g>
+
+</svg>
